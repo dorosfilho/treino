@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Treino e Dieta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #00796b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 900px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .progress-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 25px;
+            overflow: hidden;
+            height: 20px;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #00796b;
+            width: 0%;
+            transition: width 0.3s ease-in-out;
+        }
+        .section {
+            margin: 20px 0;
+        }
+        .card {
+            background: #f9f9f9;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .card h3 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #00796b;
+        }
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+        }
+        .card ul li {
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .card ul li:last-child {
+            border-bottom: none;
+        }
+        .exercise-input {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .exercise-input input {
+            margin-left: 10px;
+            padding: 5px;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .checkbox-container input {
+            margin-right: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+            background-color: #00796b;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Plano de Treino e Dieta</h1>
+    </header>
+
+    <div class="container">
+        <div class="progress-container">
+            <h2>Progresso</h2>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-bar-fill"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Treino</h2>
+            <div id="workout">
+                <!-- Treino será inserido aqui via JavaScript -->
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Dieta</h2>
+            <div id="diet">
+                <!-- Dieta será inserida aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Planejamento de Treino e Dieta - Personalizado para Você</p>
+    </footer>
+
+    <script>
+        const treino = [
+            {
+                dia: "Dia 1: Superiores",
+                exercicios: [
+                    { nome: "Supino reto (4x10-12)", carga: "", feito: false },
+                    { nome: "Crucifixo inclinado (4x12)", carga: "", feito: false },
+                    { nome: "Puxada alta (4x10-12)", carga: "", feito: false },
+                    { nome: "Remada curvada (4x12)", carga: "", feito: false },
+                    { nome: "Desenvolvimento com halteres (4x12)", carga: "", feito: false },
+                    { nome: "Elevação lateral (4x15)", carga: "", feito: false },
+                    { nome: "Tríceps corda (4x15)", carga: "", feito: false },
+                    { nome: "Rosca direta com barra (4x12)", carga: "", feito: false }
+                ],
+                cardio: "Cardio HIIT (20 minutos): 30 segundos de alta intensidade + 1 minuto de recuperação"
+            },
+            {
+                dia: "Dia 2: Inferiores",
+                exercicios: [
+                    { nome: "Agachamento livre (4x10-12)", carga: "", feito: false },
+                    { nome: "Cadeira extensora (4x15)", carga: "", feito: false },
+                    { nome: "Stiff com halteres (4x10-12)", carga: "", feito: false },
+                    { nome: "Mesa flexora (4x12)", carga: "", feito: false },
+                    { nome: "Hip thrust (4x12)", carga: "", feito: false },
+                    { nome: "Passada (3x20 passos)", carga: "", feito: false },
+                    { nome: "Panturrilha em pé (4x20)", carga: "", feito: false },
+                    { nome: "Panturrilha sentado (4x15-20)", carga: "", feito: false }
+                ],
+                cardio: "Cardio Moderado (30-40 minutos): Esteira em ritmo moderado"
+            }
+        ];
+
+        const dieta = [
+            {
+                refeicao: "Café da Manhã",
+                itens: [
+                    "3 ovos mexidos com queijo cottage (30g)",
+                    "1 fatia de pão integral ou 50g de tapioca",
+                    "1 café com 1 colher de chá de açúcar"
+                ],
+                seguido: false
+            },
+            {
+                refeicao: "Lanche da Manhã",
+                itens: [
+                    "1 iogurte natural ou grego (100g)",
+                    "10 amêndoas ou 1 colher de pasta de amendoim"
+                ],
+                seguido: false
+            },
+            {
+                refeicao: "Almoço",
+                itens: [
+                    "150g de frango grelhado ou carne suína magra",
+                    "50g de arroz integral ou batata-doce",
+                    "Salada com folhas verdes, azeite, tomate e cenoura"
+                ],
+                seguido: false
+            }
+        ];
+
+        let totalItens = 0;
+        let itensCompletos = 0;
+
+        function atualizarProgresso() {
+            const progresso = (itensCompletos / totalItens) * 100;
+            document.getElementById('progress-fill').style.width = `${progresso}%`;
+        }
+
+        // Renderizar treino
+        const workoutDiv = document.getElementById('workout');
+        treino.forEach(day => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            const title = document.createElement('h3');
+            title.textContent = day.dia;
+            card.appendChild(title);
+
+            const ul = document.createElement('ul');
+            day.exercicios.forEach(exercise => {
+                totalItens++;
+                const li = document.createElement('li');
+                li.textContent = exercise.nome;
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.addEventListener('change', (e) => {
+                    exercise.feito = e.target.checked;
+                    li.style.textDecoration = e.target.checked ? 'line-through' : 'none';
+                    itensCompletos += e.target.checked ? 1 : -1;
+                    atualizarProgresso();
+                });
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = 'Carga usada';
+                input.style.marginLeft = '10px';
+                input.addEventListener('change', (e) => {
+                    exercise.carga = e.target.value;
+                });
+
+                li.appendChild(checkbox);
+                li.appendChild(input);
+                ul.appendChild(li);
+            });
+
+            card.appendChild(ul);
+
+            const cardio = document.createElement('p');
+            cardio.classList.add('cardio');
+            cardio.textContent = day.cardio;
+            card.appendChild(cardio);
+
+            workoutDiv.appendChild(card);
+        });
+
+        // Renderizar dieta
+        const dietDiv = document.getElementById('diet');
+        dieta.forEach(meal => {
+            totalItens++;
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            const title = document.createElement('h3');
+            title.textContent = meal.refeicao;
+            card.appendChild(title);
+
+            const ul = document.createElement('ul');
+            meal.itens.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                ul.appendChild(li);
+            });
+            card.appendChild(ul);
+
+            const checkboxContainer = document.createElement('div');
+            checkboxContainer.classList.add('checkbox-container');
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.addEventListener('change', (e) => {
+                meal.seguido = e.target.checked;
+                title.style.textDecoration = e.target.checked ? 'line-through' : 'none';
+                itensCompletos += e.target.checked ? 1 : -1;
+                atualizarProgresso();
+            });
+
+            const label = document.createElement('label');
+            label.textContent = 'Segui esta refeição';
+
+            checkboxContainer.appendChild(checkbox);
+            checkboxContainer.appendChild(label);
+            card.appendChild(checkboxContainer);
+
+            dietDiv.appendChild(card);
+        });
+
+        atualizarProgresso();
+    </script>
+</body>
+</html>
